@@ -473,7 +473,7 @@ function display_pollvote($poll_id, $display_loading = true) {
 		foreach($poll_answers as $poll_answer) {
 			// Poll Answer Variables
 			$poll_answer_id = (int) $poll_answer->polla_aid;
-			$poll_answer_text = wp_kses_post( removeslashes( $poll_answer->polla_answers ) );
+			$poll_answer_text = do_shortcode( wp_kses_post( removeslashes( $poll_answer->polla_answers ) ) );
 			$poll_answer_votes = (int) $poll_answer->polla_votes;
 			$poll_answer_percentage = $poll_question_totalvotes > 0 ? round((($poll_answer_votes/$poll_question_totalvotes)*100)) : 0;
 			$template_answer = removeslashes(get_option('poll_template_votebody'));
@@ -603,7 +603,7 @@ function display_pollresult($poll_id, $user_voted = array(), $display_loading = 
 		foreach($poll_answers as $poll_answer) {
 			// Poll Answer Variables
 			$poll_answer_id = (int) $poll_answer->polla_aid;
-			$poll_answer_text = wp_kses_post( removeslashes($poll_answer->polla_answers) );
+			$poll_answer_text = do_shortcode( wp_kses_post( removeslashes($poll_answer->polla_answers) ) );
 			$poll_answer_votes = (int) $poll_answer->polla_votes;
 			// Calculate Percentage And Image Bar Width
 			if(!$poll_totalvotes_zero) {
